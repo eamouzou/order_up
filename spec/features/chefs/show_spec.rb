@@ -45,17 +45,12 @@ RSpec.describe "chef show page", type: :feature do
     expect(page).to have_link('All Ingredients List')
   end
 
+  scenario "click link, taken to chef's ingredients index page, with list" do
+    visit "/chefs/#{@chef3.id}"
+    click_link('All Ingredients List')
+
+    expect(current_path).to eq("/chefs/#{@chef3.id}/ingredients")
+    expect(page).to have_content('ingredient1 ingredient2 ingredient3')
+  end
+
 end
-
-# Story 3 of 3
-# As a visitor
-# When I visit a chef's show page
-# I see the name of that chef
-# And I see a link to view a list of all ingredients that this chef uses in their dishes
-# When I click on that link
-# I'm taken to a chef's ingredient index page
-# and I can see a unique list of names of all the ingredients that this chef uses
-
-# <p>Ingredients List: <% @dish.ingredients.each do |ingredient|%>
-#                     <%= ingredient.name %>
-#                     <% end %></p>
